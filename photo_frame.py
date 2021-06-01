@@ -82,13 +82,14 @@ def show_banner():
 	logging.info("Showing Banner")
 
 	epd.Init_4Gray()
+	epd.Clear()
 
-	Limage = Image.new('L', (epd.width, epd.height), 0)  # 255: clear the frame
-	draw = ImageDraw.Draw(Limage)
+	img = Image.new('L', (epd.width, epd.height), 0)  # 255: clear the frame
+	draw = ImageDraw.Draw(img)
 	draw.text((53, 80), 'Memories', font=font64, fill=epd.GRAY1)
 	draw.line((10, 160, 390, 160), fill=epd.GRAY2)
 	draw.text((135, 180), 'By Ujjal Dey', font=font24, fill=epd.GRAY3)
-	epd.display_4Gray(epd.getbuffer_4Gray(Limage))
+	epd.display_4Gray(epd.getbuffer_4Gray(img))
 	time.sleep(float(os.getenv("BANNER_DISPLAY_TIME_SEC")))
 	epd.Clear()
 
@@ -133,12 +134,12 @@ def show_standby(sleep_time_sec):
 
 	epd.Init_4Gray()
 
-	Limage = Image.new('L', (epd.width, epd.height), 0)  # 255: clear the frame
-	draw = ImageDraw.Draw(Limage)
+	img = Image.new('L', (epd.width, epd.height), 0)  # 255: clear the frame
+	draw = ImageDraw.Draw(img)
 	draw.text((36, 80), 'Good Night', font=font64, fill=epd.GRAY1)
 	draw.line((10, 160, 390, 160), fill=epd.GRAY2)
 	draw.text((96, 180), 'See you tomorrow', font=font24, fill=epd.GRAY3)
-	epd.display_4Gray(epd.getbuffer_4Gray(Limage))
+	epd.display_4Gray(epd.getbuffer_4Gray(img))
 	time.sleep(sleep_time_sec)
 	epd.Clear()
 
